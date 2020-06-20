@@ -19,7 +19,8 @@ services:
                ipv4_address: 172.20.0.3
 
     web:
-        image: hlalili/senat_scrapping:scrapping-senat
+        build: .
+        image: scrapping_sena
         ports:
             - "5000:5000"
         networks:
