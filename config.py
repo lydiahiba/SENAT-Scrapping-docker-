@@ -16,18 +16,3 @@ def get_driver():
     return driver
 
 
-def to_es(self,url,index_name,username,password,nom,df):
-        INDEX_NAME= index_name   
-        URL= url  
-        ELASTIC_ID= username 
-        ELASTIC_PSSWD= password 
-        df['nom']= nom 
-        
-        es_client = Elasticsearch([URL], http_auth=(ELASTIC_ID,ELASTIC_PSSWD ))
-        df_iter = df.iterrows()
-        result = []
-        for index, document in df_iter:
-            res = es_client.index(index=INDEX_NAME, id=index, body=document.to_dict())
-            result.append(res['result'])
-            
-        return result
