@@ -1,32 +1,20 @@
-# Create API of ML model using flask
-
-'''
-This code takes the JSON data while POST request an performs the prediction using loaded model and returns
-the results in JSON format.
-'''
-
-# Import libraries
-import numpy as np
-from flask import Flask, request, jsonify
-import pickle
+from flask import Flask, request, jsonify, render_template
+from scrapping import ScrappingSena
+import config
 
 app = Flask(__name__)
 
-# Load the model
-model = pickle.load(open('model/model.pkl','rb'))
+@app.route('/',methods=['GET'])
+def index():
+    return render_template('index.html')
 
-@app.route('/api',methods=['POST'])
-def predict():
-    # Get the data from the POST request.
-    data = request.get_json(force=True) # data ici c'est le json qu'on va récupérer de insomnia ( il est alimenté dans l'interface insomnia )
-
-    # Make prediction using model loaded from disk as per the data.
-    prediction = model.predict([[np.array(data['exp'])]]) # le exp c'est notre variable qu'on va utilisée dans json dans insomnia pour faire renntrée les valeurs qu'on veux donc c'est comme x ou y c'est variable a remplir 
-
-    # Take the first value of prediction
-    output = prediction[0]
-
-    return jsonify(output)
+@app.route('/scrapper',methods=["POST"])
+def scrapper():
+    link_field = request.form['link_field']
+    SENA = ScrappingSena(link_field,config)
+    df = SENA.get_press_release_links_by_page()
+    SENA.to_es(request.form['es_url'],request.form['index_name'],request.form['username'],request.form['password'],request.form['who'])
+    return render_template('results.html',  tables=[df.to_html(classes='table')], titles=df.columns.values)        
 
 if __name__ == '__main__':
     # app.run(port=8888, host='0.0.0.0', debug=True)

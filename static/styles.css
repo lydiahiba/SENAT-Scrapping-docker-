@@ -1,0 +1,55 @@
+.jumbotron {
+    background-color: #ffc107;
+    border-radius: 0%;
+}
+
+#cover {
+  background: #222 url('hemicycle-2017-300.jpg') center center no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#cover2 {
+  background-color: darkseagreen;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+textarea {
+  border: 0px;
+}
+
+#cover-caption {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.boxsizingBorder {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.op {
+  background-color: #ffffffd0;
+  padding: 20px;
+  margin-top: 15vh;
+  margin-bottom: 10vh;
+  border-radius: 10px;	
+}
+
+.op2 {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+    border-radius: 10px;	
+  }
+
+.form-group {
+  opacity: 100%;
+}
