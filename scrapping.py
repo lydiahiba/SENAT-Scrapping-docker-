@@ -4,13 +4,13 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, ElementClickInterceptedException, ElementNotInteractableException
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.chrome.options import Options
 import numpy as np
 import time
 import datetime
 import numpy as np
 import pandas as pd
 import locale
-from selenium.webdriver.chrome.options import Options
 import re 
 from elasticsearch import Elasticsearch
 
